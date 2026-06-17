@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_switchcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 19:35:27 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:45:27 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/17 19:09:37 by vtarasov          #+#    #+#             */
+/*   Updated: 2026/06/17 20:44:49 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+int	ft_toupper(int c)
 {
-	return (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v');
+	unsigned char	uc;
+
+	uc = (unsigned char)c + ('A' - 'a') * (c >= 'a' && c <= 'z');
+	return (uc);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_tolower(int c)
 {
-	int	sign;
-	int	ret;
+	unsigned char	uc;
 
-	while (ft_isspace(*nptr))
-	{
-		nptr++;
-	}
-	ret = 0;
-	sign = 1;
-	if (nptr[0] == '-')
-	{
-		sign = -1;
-		nptr++;
-	}
-	else if (nptr[0] == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		ret *= 10;
-		ret += *nptr - '0';
-		nptr++;
-	}
-	return (sign * ret);
+	uc = (unsigned char)c - ('A' - 'a') * (c >= 'A' && c <= 'Z');
+	return (uc);
 }

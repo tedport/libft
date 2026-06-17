@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/16 19:33:34 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ p1   [===]
 p2  [===]
 */
 
-void	*ft_memmove(void *dest, const void *src, long unsigned int n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	if (dest - src >= (long signed int)n)
 	{

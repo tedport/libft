@@ -6,13 +6,13 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/16 15:04:53 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *data, long unsigned int n)
+void	ft_bzero(void *data, size_t n)
 {
 	n--;
 	while (n)

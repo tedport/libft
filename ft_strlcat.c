@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:37:30 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/16 19:33:16 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static unsigned int	ft_strnlen(char *str, unsigned int n)
 	return (len);
 }
 
-static char	*ft_strncpy(char *dest, char *src, int n)
+static char	*ft_strncpy(char *dest, const char *src, int n)
 {
 	int	i;
 
@@ -40,7 +40,8 @@ static char	*ft_strncpy(char *dest, char *src, int n)
 	return (dest);
 }
 
-long unsigned int	ft_strlcat(char *dest, char *src, long unsigned int size)
+size_t	ft_strlcat(char *dest, const char *src,
+		size_t size)
 {
 	const unsigned int	srclen = ft_strlen(src);
 	const unsigned int	dstlen = ft_strnlen(dest, size);

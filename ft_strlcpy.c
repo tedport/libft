@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:50:52 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/16 19:32:56 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < n && src[i] != '\0')
@@ -30,8 +30,8 @@ static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 	return (dest);
 }
 
-long unsigned int	ft_strlcpy(char *dest, const char *src,
-		long unsigned int size)
+size_t	ft_strlcpy(char *dest, const char *src,
+		size_t size)
 {
 	const unsigned int	srclen = ft_strlen(src);
 

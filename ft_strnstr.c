@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 19:35:27 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:45:27 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/17 20:29:57 by vtarasov          #+#    #+#             */
+/*   Updated: 2026/06/17 20:44:44 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+char	*ft_strnstr(const char *big, const char *little, size_t n)
 {
-	return (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v');
-}
+	const int	to_find_len = ft_strlen(little);
 
-int	ft_atoi(const char *nptr)
-{
-	int	sign;
-	int	ret;
-
-	while (ft_isspace(*nptr))
+	if (!to_find_len)
+		return ((char *)big);
+	while (*big && n)
 	{
-		nptr++;
+		if (!ft_strncmp(big, little, to_find_len))
+			return ((char *)big);
+		big++;
+		n--;
 	}
-	ret = 0;
-	sign = 1;
-	if (nptr[0] == '-')
-	{
-		sign = -1;
-		nptr++;
-	}
-	else if (nptr[0] == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		ret *= 10;
-		ret += *nptr - '0';
-		nptr++;
-	}
-	return (sign * ret);
+	return (0);
 }

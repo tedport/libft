@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 19:35:27 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:45:27 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/17 20:32:22 by vtarasov          #+#    #+#             */
+/*   Updated: 2026/06/17 20:57:19 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	return (c == ' ' || c == '\f' || c == '\n' || c == '\r' || c == '\t'
-		|| c == '\v');
+	if (!n)
+		return (0);
+	n--;
+	while (*s1 != '\0' && *s1 == *s2 && n > 0)
+	{
+		s1++;
+		s2++;
+		n--;
+	}
+	return (*s1 - *s2);
 }
 
-int	ft_atoi(const char *nptr)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	sign;
-	int	ret;
+	const unsigned char	*uc_s1 = s1;
+	const unsigned char	*uc_s2 = s2;
 
-	while (ft_isspace(*nptr))
+	if (!n)
+		return (0);
+	n--;
+	while (*uc_s1 != '\0' && *uc_s1 == *uc_s2 && n > 0)
 	{
-		nptr++;
+		uc_s1++;
+		uc_s2++;
+		n--;
 	}
-	ret = 0;
-	sign = 1;
-	if (nptr[0] == '-')
-	{
-		sign = -1;
-		nptr++;
-	}
-	else if (nptr[0] == '+')
-		nptr++;
-	while (*nptr >= '0' && *nptr <= '9')
-	{
-		ret *= 10;
-		ret += *nptr - '0';
-		nptr++;
-	}
-	return (sign * ret);
+	return (*uc_s1 - *uc_s2);
 }
