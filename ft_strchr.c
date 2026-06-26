@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 19:09:22 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:45:16 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/24 21:12:14 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strchr(const char *s, int c)
 	{
 		if (*s == c)
 			return ((char *)s);
-		if (*s == '0')
+		if (*s == 0)
 			break ;
 		s++;
 	}
@@ -29,7 +29,7 @@ char	*ft_strrchr(const char *s, int c)
 {
 	const char *const	os = s;
 
-	while (s)
+	while (*s)
 		s++;
 	while (1)
 	{

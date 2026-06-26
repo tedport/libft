@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_put_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/25 00:50:43 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/26 13:38:06 by vtarasov          #+#    #+#             */
+/*   Updated: 2026/06/26 13:41:24 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-void	ft_bzero(void *data, size_t n)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	i;
+	write(fd, &c, 1);
+}
 
-	i = 0;
-	while (i < n)
-	{
-		((char *)data)[i] = 0;
-		i++;
-	}
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	ft_putstr_fd(ft_itoa(n), fd);
 }

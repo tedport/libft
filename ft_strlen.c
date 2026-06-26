@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:46:41 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/24 20:25:39 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);

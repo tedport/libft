@@ -6,21 +6,14 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/24 20:24:51 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*p1 [===]
-p2  [===]
-
-p1  [===]
-p2  [===]
-
-p1   [===]
-p2  [===]
-*/
+// [=====]
+//   [=====]
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

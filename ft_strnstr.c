@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 20:29:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:44:44 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 13:50:19 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t n)
 {
-	const int	to_find_len = ft_strlen(little);
+	const size_t	little_len = ft_strlen(little);
+	const char		*loc;
 
-	if (!to_find_len)
-		return ((char *)big);
-	while (*big && n)
+	loc = big - 1;
+	while (1)
 	{
-		if (!ft_strncmp(big, little, to_find_len))
-			return ((char *)big);
-		big++;
-		n--;
+		loc = ft_strchr(loc + 1, little[0]);
+		if (loc - big + little_len > n || !loc)
+			return (0);
+		if (!ft_strncmp(loc, little, little_len))
+			return ((char *)loc);
 	}
-	return (0);
 }

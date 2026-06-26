@@ -6,15 +6,15 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 18:37:30 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:40:29 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/24 20:24:06 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	ft_strnlen(char *str, unsigned int n)
+static size_t	ft_strnlen(char *str, size_t n)
 {
-	unsigned int	len;
+	size_t	len;
 
 	len = 0;
 	while (str[len] != '\0' && len < n)
@@ -43,8 +43,8 @@ static char	*ft_strncpy(char *dest, const char *src, int n)
 size_t	ft_strlcat(char *dest, const char *src,
 		size_t size)
 {
-	const unsigned int	srclen = ft_strlen(src);
-	const unsigned int	dstlen = ft_strnlen(dest, size);
+	const size_t	srclen = ft_strlen(src);
+	const size_t	dstlen = ft_strnlen(dest, size);
 
 	if (dstlen >= size)
 		return (size + srclen);

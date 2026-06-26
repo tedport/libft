@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 20:32:22 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:57:19 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/24 21:19:39 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	if (!n)
 		return (0);
 	n--;
-	while (*uc_s1 != '\0' && *uc_s1 == *uc_s2 && n > 0)
+	while (*uc_s1 == *uc_s2 && n > 0)
 	{
 		uc_s1++;
 		uc_s2++;
