@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 12:27:48 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 17:16:29 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 18:02:02 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,18 @@ static size_t	wc(char const *s, char delimiter)
 	}
 }
 
+// dvadcat'
+
+static void	cleanup(char **splitted)
+{
+	while (*splitted)
+	{
+		free(*splitted);
+		splitted++;
+	}
+	free(splitted);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int			word_index;
@@ -75,6 +87,11 @@ char	**ft_split(char const *s, char c)
 	{
 		splitted[word_index] = ft_substr(current_word, 0, word_len(current_word,
 					c));
+		if (!splitted[word_index])
+		{
+			cleanup(splitted);
+			return (0);
+		}
 		current_word = next_word(current_word, c);
 		word_index++;
 	}
