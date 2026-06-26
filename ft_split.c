@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 12:27:48 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 13:48:42 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 17:16:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	word_len(char const *s, char delimiter)
 	int	i;
 
 	i = 0;
-	while (s[i] != delimiter)
+	while (s[i] != delimiter && s[i])
 		i++;
 	return (i);
 }
@@ -61,20 +61,22 @@ static size_t	wc(char const *s, char delimiter)
 char	**ft_split(char const *s, char c)
 {
 	int			word_index;
-	char		**lines;
+	char		**splitted;
 	const char	*current_word;
 
-	lines = malloc((wc(s, c) + 1) * sizeof(char *));
-	lines[wc(s, c)] = 0;
+	splitted = ft_calloc(wc(s, c) + 1, sizeof(char *));
+	if (!splitted)
+		return (0);
 	current_word = s;
 	word_index = 0;
+	if (*current_word == c)
+		current_word = next_word(current_word, c);
 	while (current_word)
 	{
-		if (*current_word != c)
-			lines[word_index] = ft_substr(current_word, 0,
-					word_len(current_word, c));
+		splitted[word_index] = ft_substr(current_word, 0, word_len(current_word,
+					c));
 		current_word = next_word(current_word, c);
 		word_index++;
 	}
-	return (lines);
+	return (splitted);
 }

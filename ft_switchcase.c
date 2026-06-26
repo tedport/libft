@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 19:09:37 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:44:49 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 15:10:14 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int	ft_toupper(int c)
 {
 	unsigned char	uc;
 
-	uc = (unsigned char)c + ('A' - 'a') * (c >= 'a' && c <= 'z');
+	uc = (unsigned char)c;
+	if (!(c >= 'a' && c <= 'z'))
+		return (uc);
+	uc += ('A' - 'a');
 	return (uc);
 }
 
@@ -24,6 +27,9 @@ int	ft_tolower(int c)
 {
 	unsigned char	uc;
 
-	uc = (unsigned char)c - ('A' - 'a') * (c >= 'A' && c <= 'Z');
+	uc = (unsigned char)c;
+	if (!(c >= 'A' && c <= 'Z'))
+		return (uc);
+	uc -= ('A' - 'a');
 	return (uc);
 }

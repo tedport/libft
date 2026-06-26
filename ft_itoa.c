@@ -6,12 +6,12 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:03:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 13:48:01 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 17:16:11 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 static size_t	integer_as_string_length(int n)
 {
@@ -87,9 +87,11 @@ char	*ft_itoa(int n)
 	char		*result;
 
 	t = n;
-	result = ft_calloc(integer_as_string_length(n), 1);
+	result = ft_calloc(integer_as_string_length(n) + 1, 1);
 	if (!result)
 		return (0);
+	if (!t)
+		return (ft_strlcpy(result, "0", integer_as_string_length(n) + 1));
 	internal_itoa(t, result);
 	return (result);
 }

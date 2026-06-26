@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 19:09:22 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/24 21:12:14 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 17:16:00 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	*ft_memchr(const void *s, int c, size_t n)
 {
 	const unsigned char	*int8s = (const unsigned char *)s;
 	const unsigned char	uc = c;
+	size_t				idx;
 
-	while (1)
+	idx = 0;
+	while (idx < n)
 	{
 		if (*int8s == uc)
 			return ((void *)int8s);
-		if (!n)
-			break ;
 		int8s++;
-		n--;
+		idx++;
 	}
 	return (0);
 }
