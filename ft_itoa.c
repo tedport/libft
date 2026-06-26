@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:03:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 17:16:11 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 17:38:05 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static char	*internal_itoa(long long int n, char *dst)
 {
 	const char	*odst = dst;
 	int			sign;
+	char		c;
 
 	sign = 0;
 	if (n < 0)
@@ -76,7 +77,7 @@ static char	*internal_itoa(long long int n, char *dst)
 		if (n == 0)
 			break ;
 	}
-	*(dst + 1) = 0;
+	*dst = 0;
 	internal_reverse_string((char *)(odst + sign));
 	return ((char *)odst);
 }
@@ -87,11 +88,11 @@ char	*ft_itoa(int n)
 	char		*result;
 
 	t = n;
+	if (!t)
+		return (ft_strdup("0"));
 	result = ft_calloc(integer_as_string_length(n) + 1, 1);
 	if (!result)
 		return (0);
-	if (!t)
-		return (ft_strlcpy(result, "0", integer_as_string_length(n) + 1));
 	internal_itoa(t, result);
 	return (result);
 }
