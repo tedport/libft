@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:03:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 17:38:05 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 20:35:53 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static char	*internal_itoa(long long int n, char *dst)
 {
 	const char	*odst = dst;
 	int			sign;
-	char		c;
 
 	sign = 0;
 	if (n < 0)

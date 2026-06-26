@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 00:29:46 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 20:33:16 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/26 18:27:34 by vtarasov          #+#    #+#             */
+/*   Updated: 2026/06/26 20:36:26 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	char	*sub;
-	size_t	real_len;
+	del(lst->content);
+	free(lst);
+}
 
-	real_len = ft_strlen(s);
-	if (real_len - start > len)
-		real_len = len;
-	if (start > ft_strlen(s))
-		return (ft_strdup(""));
-	sub = malloc(real_len + 1);
-	if (!sub)
-		return (0);
-	ft_strlcpy(sub, s + start, real_len + 1);
-	return (sub);
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*cur;
+	t_list	*prev;
+
+	if (!(*lst))
+		return ;
+	cur = (*lst)->next;
+	prev = (*lst);
+	while (cur != 0)
+	{
+		ft_lstdelone(prev, del);
+		prev = cur;
+		cur = cur->next;
+	}
+	if (prev)
+		ft_lstdelone(prev, del);
+	if (cur)
+		ft_lstdelone(cur, del);
+	*lst = 0;
 }
