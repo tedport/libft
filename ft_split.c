@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 12:27:48 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 18:02:02 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/26 20:47:01 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ static size_t	wc(char const *s, char delimiter)
 			return (words);
 	}
 }
-
-// dvadcat'
 
 static void	cleanup(char **splitted)
 {
