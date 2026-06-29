@@ -6,28 +6,27 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/24 20:24:51 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/29 19:25:38 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// [=====]
-//   [=====]
-
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (dest - src >= (long signed int)n)
+	const unsigned char	*uc_src;
+	unsigned char		*uc_dst;
+
+	uc_src = src;
+	uc_dst = dest;
+	if (uc_src < uc_dst)
 	{
-		ft_memcpy(dest, src, n);
+		while (n-- > 0)
+			uc_dst[n] = uc_src[n];
 	}
 	else
 	{
-		while (n > 0)
-		{
-			((char *)dest)[n - 1] = ((const char *)src)[n - 1];
-			n--;
-		}
+		ft_memcpy(uc_dst, uc_src, n);
 	}
 	return (dest);
 }

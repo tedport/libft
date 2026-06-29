@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 12:27:48 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 20:47:01 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/29 18:48:35 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	current_word = s;
 	word_index = 0;
-	if (*current_word == c)
+	if (*current_word == c || !*current_word)
 		current_word = next_word(current_word, c);
 	while (current_word)
 	{

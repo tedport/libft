@@ -5,45 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/25 01:14:28 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 12:26:24 by vtarasov         ###   ########.fr       */
+/*   Created: 2026/06/29 11:28:20 by dtarasov          #+#    #+#             */
+/*   Updated: 2026/06/29 19:50:33 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_in_set(char c, const char *set)
+static int	is_in_set(char c, char const *set)
 {
 	while (*set)
 	{
-		if (*(set++) == c)
+		if (c == *set)
 			return (1);
+		set++;
 	}
 	return (0);
 }
 
+static long long	first_nonset_idx(char const *s1, char const *set)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i])
+	{
+		if (!is_in_set(s1[i], set))
+			return ((long long)i);
+		i++;
+	}
+	return (-1);
+}
+
+static long long	first_nonset_idx_bwd(char const *s1, char const *set)
+{
+	size_t	i;
+
+	i = ft_strlen(s1);
+	while (1)
+	{
+		if (!is_in_set(s1[i], set))
+			return ((long long)i);
+		if (i == 0)
+			break ;
+		i--;
+	}
+	return (-1);
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	const char *const	original_source = s1;
-	int					b_trimming;
-	size_t				substr_start;
-	size_t				substr_end;
+	long long	start;
+	long long	end;
 
-	b_trimming = 1;
-	substr_start = 0;
-	while (*s1)
-	{
-		if (!is_in_set(*s1, set))
-			b_trimming = 0;
-		if (b_trimming)
-			substr_start++;
-		s1++;
-	}
-	substr_end = substr_start;
-	while (s1 != original_source + substr_start && is_in_set(*s1, set))
-	{
-		substr_end++;
-		s1--;
-	}
-	return (ft_substr(s1, substr_start, substr_end - substr_start));
+	start = first_nonset_idx(s1, set);
+	if (start < 0)
+		return (ft_strdup(""));
+	end = first_nonset_idx_bwd(s1, set);
+	return (ft_substr(s1, start, end - start));
 }

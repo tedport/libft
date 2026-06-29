@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 20:29:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 13:50:19 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/06/29 19:42:43 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t n)
 	const char		*loc;
 
 	loc = big - 1;
+	if (little_len == 0)
+		return ((char *)big);
 	while (1)
 	{
 		loc = ft_strchr(loc + 1, little[0]);
