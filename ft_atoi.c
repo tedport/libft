@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 19:35:27 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/17 20:45:27 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/01 18:49:44 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int	ft_atoi(const char *nptr)
 	int	ret;
 
 	while (ft_isspace(*nptr))
-	{
 		nptr++;
-	}
 	ret = 0;
 	sign = 1;
 	if (nptr[0] == '-')

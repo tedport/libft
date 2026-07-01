@@ -6,14 +6,14 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:03:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 20:35:53 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/01 18:56:39 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	integer_as_string_length(int n)
+static size_t	integer_as_string_length(long long n)
 {
 	size_t		len;
 	long long	t;
@@ -35,49 +35,25 @@ static size_t	integer_as_string_length(int n)
 	return (len);
 }
 
-static char	*internal_reverse_string(char *str)
-{
-	int	istrlen;
-	int	cnt;
-	int	tmp;
 
-	istrlen = 0;
-	while (str[istrlen])
-		istrlen++;
-	cnt = 0;
-	while (cnt < istrlen - cnt)
-	{
-		tmp = str[cnt];
-		str[cnt] = str[istrlen - cnt - 1];
-		str[istrlen - cnt - 1] = tmp;
-		cnt++;
-	}
-	return (str);
-}
-
-static char	*internal_itoa(long long int n, char *dst)
+static char	*internal_itoa(long long n, char *dst)
 {
 	const char	*odst = dst;
-	int			sign;
 
-	sign = 0;
 	if (n < 0)
 	{
 		*dst = '-';
-		dst++;
 		n = -n;
-		sign = 1;
 	}
+	dst += integer_as_string_length(n);
+	*(dst--) = 0;
 	while (1)
 	{
-		*dst = (n % 10) + '0';
-		dst++;
+		*(dst--) = (n % 10) + '0';
 		n /= 10;
 		if (n == 0)
 			break ;
 	}
-	*dst = 0;
-	internal_reverse_string((char *)(odst + sign));
 	return ((char *)odst);
 }
 
@@ -89,7 +65,7 @@ char	*ft_itoa(int n)
 	t = n;
 	if (!t)
 		return (ft_strdup("0"));
-	result = ft_calloc(integer_as_string_length(n) + 1, 1);
+	result = ft_calloc(integer_as_string_length(t) + 1, 1);
 	if (!result)
 		return (0);
 	internal_itoa(t, result);

@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/29 19:25:38 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/01 18:58:34 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			uc_dst[n] = uc_src[n];
 	}
 	else
-	{
 		ft_memcpy(uc_dst, uc_src, n);
-	}
 	return (dest);
 }
