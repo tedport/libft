@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 13:03:57 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/01 18:56:39 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/01 19:01:13 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static size_t	integer_as_string_length(long long n)
 	}
 	return (len);
 }
-
 
 static char	*internal_itoa(long long n, char *dst)
 {
