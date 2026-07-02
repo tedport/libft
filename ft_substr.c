@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/25 00:29:46 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/02 18:16:48 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 21:11:27 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	real_len = ft_strlen(s);
 	if (real_len - start > len)
 		real_len = len;
-	if (start > ft_strlen(s))
+	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
 	sub = malloc(real_len + 1);
 	if (!sub)
