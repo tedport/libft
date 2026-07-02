@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 12:27:48 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/29 18:48:35 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 20:01:05 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,13 @@ static size_t	wc(char const *s, char delimiter)
 
 static void	cleanup(char **splitted)
 {
-	while (*splitted)
+	size_t i;
+
+	i = 0;
+	while (splitted[i])
 	{
-		free(*splitted);
-		splitted++;
+		free(splitted[i]);
+		i++;
 	}
 	free(splitted);
 }
