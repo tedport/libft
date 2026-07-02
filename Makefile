@@ -6,7 +6,7 @@
 #    By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/17 19:35:48 by vtarasov          #+#    #+#              #
-#    Updated: 2026/06/26 20:35:24 by vtarasov         ###   ########.fr        #
+#    Updated: 2026/07/02 18:18:32 by vtarasov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,19 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f libft-test
 
 re: fclean $(NAME)
 
-.PHONY: all clean fclean re
+debug: CFLAGS += -g
+debug: $(NAME)
+
+redebug: CFLAGS += -g
+redebug: re
+
+tests: debug
+	cc -g testcases.c -lft -L. -lbsd -o libft-test
+
+retests: redebug tests
+
+.PHONY: all clean fclean re tests retests debug redebug

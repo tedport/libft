@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 14:36:55 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/01 18:58:55 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 16:07:41 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	*ft_memset(void *s, int c, size_t n)
 {
 	n--;
 	while (n + 1)
-		((char *)s)[n--] = c;
+		((char *)s)[n--] = (char)c;
 	return (s);
 }

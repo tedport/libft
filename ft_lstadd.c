@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 18:19:45 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/26 20:12:49 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 14:42:44 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (*lst)
-		new->next = *lst;
+	new->next = *lst;
 	*lst = new;
 }
 

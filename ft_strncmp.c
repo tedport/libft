@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 20:32:22 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/06/29 19:41:46 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 17:46:47 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
+	const unsigned char *u1 = (const unsigned char *)s1;
+    const unsigned char *u2 = (const unsigned char *)s2;
+
 	if (!n)
 		return (0);
 	n--;
-	while (*s1 != '\0' && *s1 == *s2 && n > 0)
+	while (*u1 != '\0' && *u1 == *u2 && n > 0)
 	{
-		s1++;
-		s2++;
+		u1++;
+		u2++;
 		n--;
 	}
-	return (*s1 - *s2);
+	return (*u1 - *u2);
 }
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)

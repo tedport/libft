@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/29 11:28:20 by dtarasov          #+#    #+#             */
-/*   Updated: 2026/06/29 19:50:33 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/02 14:35:39 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static long long	first_nonset_idx_bwd(char const *s1, char const *set)
 {
 	size_t	i;
 
-	i = ft_strlen(s1);
+	i = ft_strlen(s1) - 1;
 	while (1)
 	{
 		if (!is_in_set(s1[i], set))
@@ -62,5 +62,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (start < 0)
 		return (ft_strdup(""));
 	end = first_nonset_idx_bwd(s1, set);
-	return (ft_substr(s1, start, end - start));
+	return (ft_substr(s1, start, end - start + 1));
 }
