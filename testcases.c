@@ -42,7 +42,7 @@ static char *string_filled_rnd(int length)
     return str;
 }
 
-int strarrcmp(char **strarr1, char **strarr2)
+static int strarrcmp(char **strarr1, char **strarr2)
 {
     while (*strarr1 && *strarr2)
     {
@@ -70,6 +70,33 @@ static char **strarr_from_va(size_t argc, ...)
 
     va_end(args);
     return (result);
+}
+
+static void caesar_by_ten(unsigned int idx, char* c)
+{
+    (void)idx; // Suppress unused parameter warning
+
+    if (c == NULL || !ft_isalpha(*c))
+        return ;
+
+    if (*c >= 'a' && *c <= 'z')
+        *c = 'a' + (*c - 'a' + 10) % 26;
+    else if (*c >= 'A' && *c <= 'Z')
+        *c = 'A' + (*c - 'A' + 10) % 26;
+}
+
+static char caesar_by_ten_m(unsigned int idx, char c)
+{
+    (void)idx; // Suppress unused parameter warning
+
+    if (!ft_isalpha(c))
+        return c;
+
+    if (c >= 'a' && c <= 'z')
+        c = 'a' + (c - 'a' + 10) % 26;
+    else if (c >= 'A' && c <= 'Z')
+        c = 'A' + (c - 'A' + 10) % 26;
+    return (c);
 }
 
 TSTFN(ctype_macro)
@@ -692,33 +719,6 @@ TSTFN(itoa)
     free(itoad);
 TSTFN_END
 
-static void caesar_by_ten(unsigned int idx, char* c)
-{
-    (void)idx; // Suppress unused parameter warning
-
-    if (c == NULL || !ft_isalpha(*c))
-        return ;
-
-    if (*c >= 'a' && *c <= 'z')
-        *c = 'a' + (*c - 'a' + 10) % 26;
-    else if (*c >= 'A' && *c <= 'Z')
-        *c = 'A' + (*c - 'A' + 10) % 26;
-}
-
-static char caesar_by_ten_m(unsigned int idx, char c)
-{
-    (void)idx; // Suppress unused parameter warning
-
-    if (!ft_isalpha(c))
-        return c;
-
-    if (c >= 'a' && c <= 'z')
-        c = 'a' + (c - 'a' + 10) % 26;
-    else if (c >= 'A' && c <= 'Z')
-        c = 'A' + (c - 'A' + 10) % 26;
-    return (c);
-}
-
 TSTFN(strmapi)
     char text[] = "This text is about to be ciphered!";
     char exp[] = "Drsc dohd sc klyed dy lo mszrobon!";
@@ -890,6 +890,159 @@ TSTFN(putnbr_fd)
     unlink("test_putnbr.txt");
 TSTFN_END
 
+TSTFN(lstnew)
+    t_list *lst;
+
+    lst = ft_lstnew(NULL);
+    assert(lst);
+    assert(!(lst->content));
+    assert(!(lst->next));
+    free(lst);
+    lst = ft_lstnew(malloc(sizeof(int)));
+    assert(lst);
+    assert(lst->content);
+    *(int*)(lst->content) = 0;
+    assert(*(int*)(lst->content) == 0);
+    free(lst->content);
+    free(lst);
+TSTFN_END
+
+TSTFN(lstdelone)
+    t_list *lst;
+
+    lst = ft_lstnew(malloc(sizeof(int)));
+    assert(lst);
+    assert(lst->content);
+    ft_lstdelone(lst, free);
+    lst = ft_lstnew(NULL);
+    ft_lstdelone(lst, free);
+TSTFN_END
+
+TSTFN(lstadd_front)
+    t_list *lst = NULL;
+
+    ft_lstadd_front(&lst, ft_lstnew(NULL));
+    assert(lst);
+    ft_lstadd_front(&lst, ft_lstnew(malloc(sizeof(int))));
+    assert(lst);
+    assert(lst->next);
+    assert(!(lst->next->content));
+    assert(lst->content);
+
+    ft_lstdelone(lst->next, free);
+    ft_lstdelone(lst, free);
+TSTFN_END
+
+TSTFN(lstadd_back)
+    t_list *lst = NULL;
+
+    ft_lstadd_back(&lst, ft_lstnew(NULL));
+    assert(lst);
+    ft_lstadd_back(&lst, ft_lstnew(malloc(sizeof(int))));
+    assert(lst);
+    assert((lst->next));
+    assert(lst->next->content);
+    assert(!(lst->content));
+
+    ft_lstdelone(lst->next, free);
+    ft_lstdelone(lst, free);
+TSTFN_END
+
+TSTFN(lstclear)
+    int rnd = RANDVAL(4, 128);
+    t_list *head = NULL;
+
+    for (int i = 0; i < rnd; i++)
+        ft_lstadd_back(&head, ft_lstnew(NULL));
+    
+    ft_lstclear(&head, free);
+    assert(!head);
+TSTFN_END
+
+TSTFN(lstsize)
+    int rnd = RANDVAL(4, 128);
+    t_list *head = NULL;
+
+    for (int i = 0; i < rnd; i++)
+        ft_lstadd_back(&head, ft_lstnew(NULL));
+
+    assert(ft_lstsize(head) == rnd);
+    ft_lstclear(&head, free);
+    assert(!head);
+TSTFN_END
+
+TSTFN(lstlast)
+    int rnd = RANDVAL(4, 128);
+    t_list *head = NULL;
+
+    for (int i = 0; i < rnd; i++)
+        ft_lstadd_back(&head, ft_lstnew(NULL));
+    ft_lstadd_back(&head, malloc(sizeof(int)));
+
+    assert(ft_lstlast(head)->content);
+    ft_lstclear(&head, free);
+    assert(!head);
+TSTFN_END
+
+void mult_2(void *content)
+{
+    *(int*)content *= 2;
+}
+
+void *mult_2_new(void *content)
+{
+    int *new = malloc(sizeof(int));
+    assert(new);
+    *new = *(int*)content * 2;
+
+    return (void*)new;
+}
+
+TSTFN(lstiter)
+    int rnd = RANDVAL(4, 128);
+    t_list *head = NULL;
+
+    for (int i = 0; i < rnd; i++)
+    {
+        int *val = malloc(sizeof(int));
+        *val = i + 1;
+
+        ft_lstadd_back(&head, ft_lstnew(val));
+    }
+    t_list *current = head;
+    ft_lstiter(head, mult_2);
+    while (current)
+    {
+        assert(*(int*)current->content % 2 == 0);
+        current = current->next;
+    }
+    ft_lstclear(&head, free);
+TSTFN_END
+
+TSTFN(lstmap)
+    int rnd = RANDVAL(4, 128);
+    t_list *head = NULL;
+
+    for (int i = 0; i < rnd; i++)
+    {
+        int *val = malloc(sizeof(int));
+        *val = i + 1;
+
+        ft_lstadd_back(&head, ft_lstnew(val));
+    }
+    t_list *copy = ft_lstmap(head, mult_2_new, free);
+    t_list *current = copy;
+    assert(ft_lstsize(copy) == ft_lstsize(head));
+    while (current)
+    {
+        assert(*(int*)current->content % 2 == 0);
+        current = current->next;
+    }
+    ft_lstclear(&head, free);
+    ft_lstclear(&copy, free);
+TSTFN_END
+
+
 int main()
 {
     srand(time(0));
@@ -919,6 +1072,14 @@ int main()
     test_putendl_fd();
     test_putnbr_fd();
     test_putstr_fd();
+    test_lstnew();
+    test_lstdelone();
+    test_lstadd_front();
+    test_lstadd_back();
+    test_lstclear();
+    test_lstsize();
+    test_lstiter();
+    test_lstmap();
 
     return (0);
 }

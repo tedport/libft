@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 18:19:45 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/02 14:42:44 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/03 15:10:25 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 	else
 	{
-		while (cur->next)
-			cur = cur->next;
+		cur = ft_lstlast(cur);
 		cur->next = new;
 	}
 }
