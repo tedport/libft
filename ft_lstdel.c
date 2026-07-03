@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 18:27:34 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/03 14:56:59 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:06:34 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (lst->content)
+	if (lst->content && del)
 		del(lst->content);
 	free(lst);
 }

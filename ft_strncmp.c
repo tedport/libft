@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 20:32:22 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/02 17:46:47 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:10:29 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	const unsigned char *u1 = (const unsigned char *)s1;
-    const unsigned char *u2 = (const unsigned char *)s2;
+	const unsigned char	*u1 = (const unsigned char *)s1;
+	const unsigned char	*u2 = (const unsigned char *)s2;
 
 	if (!n)
 		return (0);

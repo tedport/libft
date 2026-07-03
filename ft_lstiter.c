@@ -6,7 +6,7 @@
 /*   By: vtarasov <vtarasov@student.42warsaw.pl>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/26 19:02:08 by vtarasov          #+#    #+#             */
-/*   Updated: 2026/07/02 14:39:02 by vtarasov         ###   ########.fr       */
+/*   Updated: 2026/07/03 17:08:26 by vtarasov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*current;
 	t_list	*new;
 
+	if (!lst)
+		return (0);
 	start = ft_lstnew(f(lst->content));
 	if (!start)
 		return (0);
